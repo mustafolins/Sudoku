@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Sudoku
+namespace SudokuLibrary
 {
-    class SudokuCreater
+    public class SudokuCreater
     {
         public int[][] Positions { get; set; }
 

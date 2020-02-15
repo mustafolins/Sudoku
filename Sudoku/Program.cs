@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SudokuLibrary;
+using System;
 
 namespace Sudoku
 {
