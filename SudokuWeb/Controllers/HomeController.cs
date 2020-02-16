@@ -22,6 +22,7 @@ namespace SudokuWeb.Controllers
         public IActionResult Index()
         {
             var sudoku = new SudokuCreater();
+            sudoku.HideRandomValues(4);
             return View(new SudokuModel { Sudoku = sudoku });
         }
 

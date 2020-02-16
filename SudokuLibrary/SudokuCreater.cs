@@ -7,9 +7,16 @@ namespace SudokuLibrary
     public class SudokuCreater
     {
         public int[][] Positions { get; set; }
+        public bool[][] ShownPositions { get; set; }
 
         public SudokuCreater()
         {
+            ShownPositions = new bool[9][];
+            for (int i = 0; i < 9; i++)
+            {
+                ShownPositions[i] = new bool[9];
+            }
+
             // initialize array
             Positions = new int[9][];
             for (int i = 0; i < 9; i++)
@@ -74,7 +81,7 @@ namespace SudokuLibrary
                             for (int k = 0; k < 9; k++)
                             {
                                 Positions[l][k] = 0;
-                            } 
+                            }
                         }
                         i = 0;
                         break;
@@ -169,6 +176,18 @@ namespace SudokuLibrary
                 result += "\n";
             }
             return result;
+        }
+
+        public void HideRandomValues(int degree = 4)
+        {
+            var rand = new Random();
+            for (int i = 0; i < Positions.Length; i++)
+            {
+                for (int j = 0; j < Positions[i].Length; j++)
+                {
+                    ShownPositions[i][j] = rand.Next(degree) % (degree / 2) == 0;
+                }
+            }
         }
 
         public override string ToString()
