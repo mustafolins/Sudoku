@@ -21,27 +21,63 @@ function checkGuess(element, i, j) {
         element.parentElement.style.backgroundColor = "grey"
         shownValues[i][j] = false
     }
+    if (element.value == curSelectedNum) {
+        element.parentElement.style.backgroundColor = "rgb(236, 125, 144)"
+    }
 }
 
 function highlightOption(number) {
     $('td').each(function (index, element) {
+        // is selected number
         if (element.firstElementChild.value == number || element.firstElementChild.innerHTML == number) {
             //element.style.border = "dotted"
             //element.style.borderColor = "green"
             if (element.style.backgroundColor != "grey"
                 && element.style.backgroundColor != "red") {
-                element.style.backgroundColor = "pink"
+                element.style.backgroundColor = "rgb(236, 125, 144)"
             }
         }
+        // not the selected number
         else {
             if (element.style.backgroundColor != "grey"
-                && element.style.backgroundColor != "red") {
+                && element.style.backgroundColor != "red"
+                && element.style.backgroundColor != "lightpink") {
                 element.style.backgroundColor = "white"
             }
         }
     })
     curSelectedNum = number
 }
+
+function highlightRowCol(row, col) {
+    $('td').each(function (index, element) {
+        // is selected number
+        if ($(element).parent().index() == row || $(element).index() == col) {
+            //element.style.border = "dotted"
+            //element.style.borderColor = "green"
+            if (element.style.backgroundColor != "grey"
+                && element.style.backgroundColor != "red"
+                && element.style.backgroundColor != "rgb(236, 125, 144)") {
+                element.style.backgroundColor = "lightpink"
+            }
+        }
+        // not the selected number
+        else {
+            if (element.style.backgroundColor != "grey"
+                && element.style.backgroundColor != "red"
+                && element.style.backgroundColor != "rgb(236, 125, 144)") {
+                element.style.backgroundColor = "white"
+            }
+        }
+    })
+}
+
+function getColorHex(r, g, b) {
+    var red = rgbToHex(r);
+    var green = rgbToHex(g);
+    var blue = rgbToHex(b);
+    return red + green + blue;
+};
 
 function timerLabel() {
 

@@ -31,7 +31,7 @@
             <tr>
                 @for (int j = 0; j < Model.Sudoku.Positions[i].Length; j++)
                 {
-                    <td style="background-color:@((Model.Sudoku.ShownPositions[i][j]) ? "grey" : "white");border-left:@(j%3==0?"solid":"dotted");border-top:@(i%3==0?"solid":"dotted")">
+                    <td onclick="highlightRowCol(@i, @j)" style="background-color:@((Model.Sudoku.ShownPositions[i][j]) ? "grey" : "white");border-left:@(j%3==0?"solid":"dotted");border-top:@(i%3==0?"solid":"dotted")">
                         @if (Model.Sudoku.ShownPositions[i][j])
                         {
                             <input type="number" style="width:75%;text-align:center" min="1" max="9" onchange="checkGuess(this, @i, @j)">
