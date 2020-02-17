@@ -7,7 +7,7 @@ function checkGuess(element, i, j) {
     // if correct change color to blue and pink if it is current selected number
     if (element.value == sudokuData[i][j]) {
         if (curSelectedNum == sudokuData[i][j]) {
-            element.parentElement.style.backgroundColor = "pink"
+            element.parentElement.style.backgroundColor = "rgb(236, 125, 144)"
         }
         else {
             element.parentElement.style.backgroundColor = "aqua"
@@ -23,10 +23,6 @@ function checkGuess(element, i, j) {
     else {
         element.parentElement.style.backgroundColor = "grey"
         shownValues[i][j] = false
-    }
-    // if curr selected number then highlight it
-    if (element.value == curSelectedNum) {
-        element.parentElement.style.backgroundColor = "rgb(236, 125, 144)"
     }
 
     // is solved displya solved message
