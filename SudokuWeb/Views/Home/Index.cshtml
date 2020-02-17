@@ -22,8 +22,10 @@
     <h1 class="display-4">Welcome Annie</h1>
 </div>
 
+@* timer *@
 <p id="timerElement" style="font-size:45px;margin-top:0px"></p>
 
+@* the sudoku board *@
 <div style="text-align:center">
     <table style="border:solid;width:400px;table-layout:fixed">
         @for (int i = 0; i < Model.Sudoku.Positions.Length; i++)
@@ -49,6 +51,7 @@
 
 <hr />
 
+@* highlight options *@
 <label>Highlight a number:</label>
 
 <div>

@@ -6,9 +6,18 @@ namespace SudokuLibrary
 {
     public class SudokuCreater
     {
+        /// <summary>
+        /// The numbers at the different positions
+        /// </summary>
         public int[][] Positions { get; set; }
+        /// <summary>
+        /// The shown <seealso cref="Positions"/>.
+        /// </summary>
         public bool[][] ShownPositions { get; set; }
 
+        /// <summary>
+        /// Creates a sudoku board.
+        /// </summary>
         public SudokuCreater()
         {
             ShownPositions = new bool[9][];
@@ -27,6 +36,9 @@ namespace SudokuLibrary
             InitializeWithRandomValues();
         }
 
+        /// <summary>
+        /// Initializes the sudoku board with random values.
+        /// </summary>
         private void InitializeWithRandomValues()
         {
             var rand = new Random();
@@ -35,6 +47,10 @@ namespace SudokuLibrary
             InitializeAll(rand);
         }
 
+        /// <summary>
+        /// Initializes the sudoku board with the given <paramref name="rand"/>.
+        /// </summary>
+        /// <param name="rand">The <see cref="Random"/> to use.</param>
         private void InitializeAll(Random rand)
         {
             for (int i = 0; i < 9; i++)
@@ -52,6 +68,14 @@ namespace SudokuLibrary
             }
         }
 
+        /// <summary>
+        /// Gets a random value that satisfies the conditions of sudoku.
+        /// </summary>
+        /// <param name="rand">The <see cref="Random"/> to use.</param>
+        /// <param name="i">The current row.</param>
+        /// <param name="j">The current column.</param>
+        /// <param name="currRand">The current random number.</param>
+        /// <param name="attempts">A reference to the number of attempts to get a random.</param>
         private void GetRandom(Random rand, ref int i, ref int j, ref int currRand, ref int attempts)
         {
             while (ExistsInColumn(currRand, j) || ExistsInRow(currRand, i) || ExistsInBox(currRand, i, j))
@@ -93,6 +117,13 @@ namespace SudokuLibrary
             }
         }
 
+        /// <summary>
+        /// Checks if a <paramref name="num"/> exists in the current box.
+        /// </summary>
+        /// <param name="num">The number to check for.</param>
+        /// <param name="row">The current row.</param>
+        /// <param name="col">The current column.</param>
+        /// <returns>Returns true if the <paramref name="num"/> is in the current box.</returns>
         private bool ExistsInBox(int num, int row, int col)
         {
             List<int> tempList = GetBox(row, col);
@@ -100,6 +131,12 @@ namespace SudokuLibrary
             return tempList.Contains(num);
         }
 
+        /// <summary>
+        /// Get's a list of numbers in the current box.
+        /// </summary>
+        /// <param name="row">The current row.</param>
+        /// <param name="col">The current column.</param>
+        /// <returns>A <see cref="List{T}"/> of <see cref="int"/>'s in the current box.</returns>
         private List<int> GetBox(int row, int col)
         {
             List<int> tempList = new List<int>();
@@ -117,6 +154,12 @@ namespace SudokuLibrary
             return tempList;
         }
 
+        /// <summary>
+        /// Checks if the <paramref name="num"/> is in the current <paramref name="row"/>.
+        /// </summary>
+        /// <param name="num">The number to check for.</param>
+        /// <param name="row">The row to look for the <paramref name="num"/> in.</param>
+        /// <returns>Returns true if the <paramref name="num"/> is in the current <paramref name="row"/>.</returns>
         private bool ExistsInRow(int num, int row)
         {
             List<int> tempList = GetRow(row);
@@ -124,6 +167,11 @@ namespace SudokuLibrary
             return tempList.Contains(num);
         }
 
+        /// <summary>
+        /// Gets a <see cref="List{T}"/> of numbers in the <paramref name="row"/>.
+        /// </summary>
+        /// <param name="row">The row to get the numbers from.</param>
+        /// <returns>A <see cref="List{T}"/> of numbers in the <paramref name="row"/>.</returns>
         private List<int> GetRow(int row)
         {
             var tempList = new List<int>();
@@ -138,6 +186,12 @@ namespace SudokuLibrary
             return tempList;
         }
 
+        /// <summary>
+        /// Checks if the <paramref name="num"/> exists in the <paramref name="column"/>.
+        /// </summary>
+        /// <param name="num">The number to look for.</param>
+        /// <param name="column">The column to look for the <paramref name="num"/> in.</param>
+        /// <returns>True if the <paramref name="num"/> exists in the <paramref name="column"/>.</returns>
         private bool ExistsInColumn(int num, int column)
         {
             List<int> tempList = GetColumn(column);
@@ -145,6 +199,11 @@ namespace SudokuLibrary
             return tempList.Contains(num);
         }
 
+        /// <summary>
+        /// Gets a <see cref="List{T}"/> of numbers in the <paramref name="column"/>.
+        /// </summary>
+        /// <param name="column">The column to get the numbers for.</param>
+        /// <returns>A <see cref="List{T}"/> of numbers in the <paramref name="column"/>.</returns>
         private List<int> GetColumn(int column)
         {
             var tempList = new List<int>();
@@ -178,6 +237,10 @@ namespace SudokuLibrary
             return result;
         }
 
+        /// <summary>
+        /// Randomly hides the <seealso cref="ShownPositions"/>.
+        /// </summary>
+        /// <param name="degree">The degree to hide the values by.</param>
         public void HideRandomValues(int degree = 4)
         {
             var rand = new Random();
@@ -190,6 +253,10 @@ namespace SudokuLibrary
             }
         }
 
+        /// <summary>
+        /// Returns a string representation of the sudoku board.
+        /// </summary>
+        /// <returns>A string representation of the sudoku board.</returns>
         public override string ToString()
         {
             var result = "";
