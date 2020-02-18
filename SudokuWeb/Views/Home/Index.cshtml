@@ -15,6 +15,7 @@
 
     window.onload = function () {
         this.setInterval(timerLabel, 1000)
+        this.updateCounts()
     }
 </script>
 
@@ -22,8 +23,14 @@
     <h1 class="display-4">Welcome Annie</h1>
 </div>
 
+@* congrats message *@
+<p id="congratsElement" style="font-size:45px;margin-top:0px"></p>
+
 @* timer *@
 <p id="timerElement" style="font-size:45px;margin-top:0px"></p>
+
+@* congrats message *@
+<div id="playAgain"></div>
 
 @* the sudoku board *@
 <div style="text-align:center">
@@ -57,6 +64,11 @@
 <div>
     @for (int i = 0; i < 9; i++)
     {
-        <input type="button" value="@(i+1)" onclick="highlightOption(@(i+1))" />
+        <span>
+            <input type="button" value="@(i+1)" onclick="highlightOption(@(i+1))" />
+            <sup>
+                <label id="numberShownLabel@(i+1)"></label>
+            </sup>
+        </span>
     }
 </div>

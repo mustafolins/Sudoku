@@ -4,6 +4,8 @@
 // Write your JavaScript code.
 
 function checkGuess(element, i, j) {
+    updateCounts()
+
     // if correct change color to blue and pink if it is current selected number
     if (element.value == sudokuData[i][j]) {
         if (curSelectedNum == sudokuData[i][j]) {
@@ -27,7 +29,8 @@ function checkGuess(element, i, j) {
 
     // is solved displya solved message
     if (isSolved()) {
-        alert("It is solved");
+        $("#congratsElement").text("Congratulations you solved it!")
+        $('#playAgain').html('<input type="button" value="Play again" onclick="window.location.reload()" />')
     }
 }
 
@@ -92,6 +95,24 @@ function highlightRowCol(row, col) {
             }
         }
     })
+}
+
+function shownCount(num) {
+    var total = 0
+    $('td').each(function (index, element) {
+        // is selected number
+        if (element.firstElementChild.value == num || element.firstElementChild.innerHTML == num) {
+            total++
+        }
+    })
+    return total
+}
+
+function updateCounts() {
+    for (var i = 0; i < 9; i++) {
+        var label = $('#numberShownLabel' + (i + 1))
+        label.text(shownCount(i + 1))
+    }
 }
 
 function timerLabel() {
